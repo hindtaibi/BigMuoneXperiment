@@ -9,7 +9,7 @@ warnings.filterwarnings('ignore')
 
 print('########## Reading the Data ##########\n')
 
-input_path = "../data/bigdata_CFD_20092024_0001.root"
+input_path = "../data/bigdata_CFD_23092024_0001.root"
 with ur.open(input_path) as file:
     outTree = file["DataTree"]
     label = outTree["label"].array(library = "np")
@@ -60,7 +60,7 @@ print('########## Correlation + Cut on dt ##########\n')
 dt_max = 20
 dt = dt2[(dt2<dt_max)]
 print("Number of events:", len(dt)/10**6, "[million] (", len(dt)*100/len(label[label == 2]), "% )")
-print('dt_max:        ', dt_max, '[µs]')
+print('dt_max:          ', dt_max, '[µs]')
 N_bins = 100
 print("Number of bins:  ", 100)
 
@@ -123,7 +123,7 @@ print('tau1 =         ', tau1, '+/-', tau1_err, '[µs]')
 print('tau2 =         ', tau2, '+/-', tau2_err, '[µs]')
 print('Reduced chi2:  ', chi2, '+/-', chi2_err)
 
-print('\n#####################################################\n')
+print('\n###############################################################\n')
 
 print('########## Correlation + Cut on dt + Cut on Energies + Cut on nrj_µ ##########\n')
 
@@ -134,7 +134,7 @@ print("Number of events:", len(dt)/10**6, "[million] (", len(dt)*100/len(label[l
 print('dt_max:        ', dt_max, '[µs]')
 print('nrj_max:       ', nrj_max, '[Arbitrary Unit]')
 N_bins = 100
-print("Number of bins:", 100)
+print("Number of bins:", 150)
 
 hist = np.histogram(dt, bins = N_bins)
 x = hist[1][1:]-(hist[1][1]-hist[1][0])/2
