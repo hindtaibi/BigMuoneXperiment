@@ -112,24 +112,19 @@ x = hist[1][1:]-(hist[1][1]-hist[1][0])/2
 y = hist[0]
 y_err = np.sqrt(y)
 
-popt, cov = curve_fit(BF.exp4, x, y, sigma=y_err, absolute_sigma = True, p0 = np.array([20000, 2, 2, 400]))
+popt, cov = curve_fit(BF.exp4, x, y, sigma = y_err, absolute_sigma = True, p0 = np.array([4e6, 2.2, 0.1, 200]))
 N0 = popt[0]
-lam1 = popt[1]
-lam1_err = np.sqrt(cov[1,1])
-lam2 = popt[2]
-lam2_err = np.sqrt(cov[2,2])
+tau= popt[1]
+tau_err = np.sqrt(cov[1,1])
+lambda_c = popt[2]
+lambda_c_err = np.sqrt(cov[2,2])
 C = popt[3]
 
-chi2 = BF.chi2_norm(y, BF.exp4(x, N0, lam1, lam2, C), y_err, 4)[0]
-chi2_err = BF.chi2_norm(y, BF.exp4(x, N0,lam1, lam2, C), y_err, 4)[1]
-
+chi2 = BF.chi2_norm(y, BF.exp4(x, N0, tau, lambda_c, C), y_err, 4)[0]
+chi2_err = BF.chi2_norm(y, BF.exp4(x, N0, tau, lambda_c, C), y_err, 4)[1]
+print("... Fit with two exponentials ...")
 print("chi2 = ", chi2, '+/-', chi2_err)
-tau1 = 1/lam1
-tau1_err = lam1_err/lam1**2
-tau2 = 1/lam2
-tau2_err = lam2_err/lam2**2
-
-print('tau1 = ', tau1, '+/-', tau1_err, '[µs]')
-print('tau2 = ', tau2, '+/-', tau2_err, '[µs]')
+print('tau = ', tau, '+/-', tau_err, '[µs]')
+print('lambda_c = ', lambda_c, '+/-', lambda_c_err, '[µs]')
 
 print('\n##########################################################\n')
