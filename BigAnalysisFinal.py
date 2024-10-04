@@ -12,7 +12,7 @@ print('####################### Parameters #######################\n')
 corr_t = 10*10**-3   #Time correlation window
 b = 0.05e6   #Point at origin for energy correlation
 dt_max = 20   #Maximum delta t
-N_bins = 50   #Number of bins used for the fit
+N_bins = 100   #Number of bins used for the fit
 
 print("Time correlation window:               ", corr_t*10**3, "[ns]")
 print("Point at origin for energy corrleation:", b)
@@ -23,7 +23,7 @@ print('\n##########################################################\n')
 
 print('#################### Reading the Data ####################\n')
 
-input_path = "../data/bigdata_CFD_23092024_0001.root"
+input_path = "../data/bigdata_CFD_26092024_0001.root"
 with ur.open(input_path) as file:
     outTree = file["DataTree"]
     label = outTree["label"].array(library = "np")
