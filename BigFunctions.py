@@ -8,8 +8,14 @@ def exp3(t, N0, lam, C) : return N0*np.exp(-lam*t) + C
 
 def exp5(t, N01, N02, lam1, lam2, C) : return N01*np.exp(-lam1*t) + N02*np.exp(-lam2*t) + C
 
-def exp4(t, N0, tau, lambda_c, C) : return N0*np.exp(-t/tau)*(1.2 + np.exp(-lambda_c*t)) + C
-
+def exp4(t, N0, tau, lambda_c, C) :
+    R = 1.2766#+0.0064
+    return N0*np.exp(-t/tau)*(1 + R*np.exp(-lambda_c*t)) + C
+"""
+def exp4(t, N0, tau, C) :
+    lambda_c = 0.0974
+    return N0*np.exp(-t/tau)*(1 +1.2766*np.exp(-lambda_c*t)) + C
+"""
 #If the model passes through the error bars, chi2 = N (number of data)
 def chi2(data, fit, error) : 
     return np.sum((data - fit)**2/error**2)
