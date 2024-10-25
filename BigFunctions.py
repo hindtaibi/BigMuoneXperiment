@@ -10,7 +10,7 @@ def exp5(t, N01, N02, lam1, lam2, C) : return N01*np.exp(-lam1*t) + N02*np.exp(-
 
 def exp4(t, N0, tau, lambda_c, C) :
     R = 1.2766#+0.0064
-    return N0*np.exp(-t/tau)*(1 + R*np.exp(-lambda_c*t)) + C
+    return N0*np.exp(-t/tau)*(R + np.exp(-lambda_c*t)) + C
 """
 def exp4(t, N0, tau, C) :
     lambda_c = 0.0974
